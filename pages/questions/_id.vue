@@ -1,36 +1,127 @@
 <template>
 
 
-  <div class="main">
+  <div class="columns">
+    <div class="column is-one-third">
+      <!--  MODAL -->
+      <!--  NICE CODE , SEE METHODS -->
+      <!--  ON CLICK ON BUTTON , ADD CLASS TO <DIV> WHICH GIVE US A MODAL-->
+      <p v-on:click="myFunction" > Click me </p>
+      <div class="modal" v-bind:class="{'is-active': isActive,'':'' }">
+        <div class="modal-background">
 
+        </div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">
+              Other questions
+            </p>
 
-    {{ post.id }}
-    <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <!--        Nice code -->
+            <button class="delete" aria-label="close" v-on:click="NotmyFunction"></button>
+          </header>
 
-      <div class="mdl-card__supporting-text">
-        <h3> 🗣 {{ post.question }}</h3>
-        <h4>{{ post.detail }}</h4>
-        <br/>
+          <section class="modal-card-body">
 
+            <!--  MENU -->
+            <ul class="menu-list">
+              <li v-for="q in OtherQuestions">
+                <nuxt-link :to="q.id"> {{ q.question }}</nuxt-link>
+              </li>
+            </ul>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success">Save changes</button>
+            <button class="button">Cancel</button>
+          </footer>
+        </div>
       </div>
-      <div class="mdl-card__actions">
-        <a href="#" class="mdl-button">💬 Answers</a>
-      </div>
+      <!--      -->
+      <aside class="menu">
+        <p class="menu-label">
+        </p>
+        <ul class="menu-list">
+          <li v-for="q in OtherQuestions">
+            <nuxt-link :to="q.id"> {{ q.question }}</nuxt-link>
+          </li>
+
+        </ul>
+
+      </aside>
+    </div>
+
+    <div class="column is-one-third">
+
+
+        <div class="card" >
+          <header class="card-header ">
+            <p class="card-header-title ">
+              {{  post.question  }}
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+
+              <article class="message is-dark">
+                <div class="message-body">
+                  {{ post.detail }}
+                </div>
+              </article>
+
+            </div>
+
+          </div>
+          <footer class="card-footer">
+            <a href="#" class="card-footer-item">Answer</a>
+            <a href="#" class="card-footer-item">Share</a>
+            <a href="#" class="card-footer-item">
+              Edit
+
+            </a>
+
+
+          </footer>
+<br/>
+
+        </div>
+<br /><br />
+      <article class="message is-warning">
+        <div class="message-body">
+          No answers yet
+        </div>
+      </article>
+
+
+      <!--  NAVBAR -->
+
+
+        <!--  PAGINATION -->
+        <!-- Can you group them by days? another rapper for-loop -->
+
+
+      </div>    <div class="column is-one-third ">
+    <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+      <ul class="pagination-list">
+        <li v-for="q in OtherQuestions">
+          <nuxt-link class="pagination-link" :to="q.id"> {{ q.question }}</nuxt-link>
+        </li>
+      </ul>
+    </nav>
+<!---->
+
+
+  </div>
 
     </div>
-    <hr/>
-
-    <ul>
-      <li v-for="q in OtherQuestions">
-        <nuxt-link :to="q.id"> {{ q.question }}</nuxt-link>
-        <br/>
-        {{ q.detail }}
 
 
-      </li>
-    </ul>
-  </div>
+
+<!--    <footer class="footer has-text-danger-light has-background-dark has-text-centered">ByeBye</footer>-->
+<!--  </div>-->
+
+
 </template>
+
 <!--
 
 -->
@@ -54,7 +145,7 @@ export default {
   },
   data() {
     return {
-      // counter:0,
+       isActive:false,
       id: this.$route.params.id,
       posts:
         [
@@ -87,12 +178,19 @@ export default {
     OtherQuestions() {
 
       return this.posts.filter(post => post.id !== this.id);
+    }
+
+  },  methods: {
+    myFunction: function() {
+      this.isActive = true;
+      console.log(this.isActive)
+
     },
-    // methods: {
-    //   // increasment(){
-    //   //   this.counter++;
-    //   // }
-    // }
+    NotmyFunction:function() {
+
+      this.isActive = false;
+      console.log(this.isActive)
+    }
   }
 }
 </script>
@@ -104,274 +202,6 @@ export default {
 -->
 <style scoped>
 
-@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css");
-@import url("https://code.getmdl.io/1.3.0/material.deep_purple-pink.min.css");
-
-.main {
-  margin-left: 20%;
-  margin-right: 10%;
-  font-size: 28px;
-  padding: 10px 10px;
-}
-
-/*.mdl-demo .mdl-layout__header-row {*/
-/*  padding-left: 40px;*/
-/*}*/
-
-/*.mdl-demo .mdl-layout.is-small-screen .mdl-layout__header-row h3 {*/
-/*  font-size: inherit;*/
-/*}*/
-
-/*.mdl-demo .mdl-layout__tab-bar-button {*/
-/*  display: none;*/
-/*}*/
-
-/*.mdl-demo .mdl-layout.is-small-screen .mdl-layout__tab-bar .mdl-button {*/
-/*  display: none;*/
-/*}*/
-
-/*.mdl-demo .mdl-layout:not(.is-small-screen) .mdl-layout__tab-bar,*/
-/*.mdl-demo .mdl-layout:not(.is-small-screen) .mdl-layout__tab-bar-container {*/
-/*  overflow: visible;*/
-/*}*/
-
-/*.mdl-demo .mdl-layout__tab-bar-container {*/
-/*  height: 64px;*/
-/*}*/
-
-/*.mdl-demo .mdl-layout__tab-bar {*/
-/*  padding: 0;*/
-/*  padding-left: 16px;*/
-/*  box-sizing: border-box;*/
-/*  height: 100%;*/
-/*  width: 100%;*/
-/*}*/
-
-/*.mdl-demo .mdl-layout__tab-bar .mdl-layout__tab {*/
-/*  height: 64px;*/
-/*  line-height: 64px;*/
-/*}*/
-
-/*.mdl-demo .mdl-layout__tab-bar .mdl-layout__tab.is-active::after {*/
-/*  background-color: white;*/
-/*  height: 4px;*/
-/*}*/
-
-/*.mdl-demo main > .mdl-layout__tab-panel {*/
-/*  padding: 8px;*/
-/*  padding-top: 48px;*/
-/*}*/
-
-/*.mdl-demo .mdl-card {*/
-/*  height: auto;*/
-/*  display: -webkit-flex;*/
-/*  display: -ms-flexbox;*/
-/*  display: flex;*/
-/*  -webkit-flex-direction: column;*/
-/*  -ms-flex-direction: column;*/
-/*  flex-direction: column;*/
-/*}*/
-
-/*.mdl-demo .mdl-card > * {*/
-/*  height: auto;*/
-/*}*/
-
-/*.mdl-demo .mdl-card .mdl-card__supporting-text {*/
-/*  margin: 40px;*/
-/*  -webkit-flex-grow: 1;*/
-/*  -ms-flex-positive: 1;*/
-/*  flex-grow: 1;*/
-/*  padding: 0;*/
-/*  color: inherit;*/
-/*  width: calc(100% - 80px);*/
-/*}*/
-
-/*.mdl-demo.mdl-demo .mdl-card__supporting-text h4 {*/
-/*  margin-top: 0;*/
-/*  margin-bottom: 20px;*/
-/*}*/
-
-/*.mdl-demo .mdl-card__actions {*/
-/*  margin: 0;*/
-/*  padding: 4px 40px;*/
-/*  color: inherit;*/
-/*}*/
-
-/*.mdl-demo .mdl-card__actions a {*/
-/*  color: #00BCD4;*/
-/*  margin: 0;*/
-/*}*/
-
-/*.mdl-demo .mdl-card__actions a:hover,*/
-/*.mdl-demo .mdl-card__actions a:active {*/
-/*  color: inherit;*/
-/*  background-color: transparent;*/
-/*}*/
-
-/*.mdl-demo .mdl-card__supporting-text + .mdl-card__actions {*/
-/*  border-top: 1px solid rgba(0, 0, 0, 0.12);*/
-/*}*/
-
-/*.mdl-demo #add {*/
-/*  position: absolute;*/
-/*  right: 40px;*/
-/*  top: 36px;*/
-/*  z-index: 999;*/
-/*}*/
-
-/*.mdl-demo .mdl-layout__content section:not(:last-of-type) {*/
-/*  position: relative;*/
-/*  margin-bottom: 48px;*/
-/*}*/
-
-/*.mdl-demo section.section--center {*/
-/*  max-width: 860px;*/
-/*}*/
-
-/*.mdl-demo #features section.section--center {*/
-/*  max-width: 620px;*/
-/*}*/
-
-/*.mdl-demo section > header {*/
-/*  display: -webkit-flex;*/
-/*  display: -ms-flexbox;*/
-/*  display: flex;*/
-/*  -webkit-align-items: center;*/
-/*  -ms-flex-align: center;*/
-/*  align-items: center;*/
-/*  -webkit-justify-content: center;*/
-/*  -ms-flex-pack: center;*/
-/*  justify-content: center;*/
-/*}*/
-
-/*.mdl-demo section > .section__play-btn {*/
-/*  min-height: 200px;*/
-/*}*/
-
-/*.mdl-demo section > header > .material-icons {*/
-/*  font-size: 3rem;*/
-/*}*/
-
-/*.mdl-demo section > button {*/
-/*  position: absolute;*/
-/*  z-index: 99;*/
-/*  top: 8px;*/
-/*  right: 8px;*/
-/*}*/
-
-/*.mdl-demo section .section__circle {*/
-/*  display: -webkit-flex;*/
-/*  display: -ms-flexbox;*/
-/*  display: flex;*/
-/*  -webkit-align-items: center;*/
-/*  -ms-flex-align: center;*/
-/*  align-items: center;*/
-/*  -webkit-justify-content: flex-start;*/
-/*  -ms-flex-pack: start;*/
-/*  justify-content: flex-start;*/
-/*  -webkit-flex-grow: 0;*/
-/*  -ms-flex-positive: 0;*/
-/*  flex-grow: 0;*/
-/*  -webkit-flex-shrink: 1;*/
-/*  -ms-flex-negative: 1;*/
-/*  flex-shrink: 1;*/
-/*}*/
-
-/*.mdl-demo section .section__text {*/
-/*  -webkit-flex-grow: 1;*/
-/*  -ms-flex-positive: 1;*/
-/*  flex-grow: 1;*/
-/*  -webkit-flex-shrink: 0;*/
-/*  -ms-flex-negative: 0;*/
-/*  flex-shrink: 0;*/
-/*  padding-top: 8px;*/
-/*}*/
-
-/*.mdl-demo section .section__text h5 {*/
-/*  font-size: inherit;*/
-/*  margin: 0;*/
-/*  margin-bottom: 0.5em;*/
-/*}*/
-
-/*.mdl-demo section .section__text a {*/
-/*  text-decoration: none;*/
-/*}*/
-
-/*.mdl-demo section .section__circle-container > .section__circle-container__circle {*/
-/*  width: 64px;*/
-/*  height: 64px;*/
-/*  border-radius: 32px;*/
-/*  margin: 8px 0;*/
-/*}*/
-
-/*.mdl-demo section.section--footer .section__circle--big {*/
-/*  width: 100px;*/
-/*  height: 100px;*/
-/*  border-radius: 50px;*/
-/*  margin: 8px 32px;*/
-/*}*/
-
-/*.mdl-demo .is-small-screen section.section--footer .section__circle--big {*/
-/*  width: 50px;*/
-/*  height: 50px;*/
-/*  border-radius: 25px;*/
-/*  margin: 8px 16px;*/
-/*}*/
-
-/*.mdl-demo section.section--footer {*/
-/*  padding: 64px 0;*/
-/*  margin: 0 -8px -8px -8px;*/
-/*}*/
-
-/*.mdl-demo section.section--center .section__text:not(:last-child) {*/
-/*  border-bottom: 1px solid rgba(0, 0, 0, .13);*/
-/*}*/
-
-/*.mdl-demo .mdl-card .mdl-card__supporting-text > h3:first-child {*/
-/*  margin-bottom: 24px;*/
-/*}*/
-
-/*.mdl-demo .mdl-layout__tab-panel:not(#overview) {*/
-/*  background-color: white;*/
-/*}*/
-
-/*.mdl-demo #features section {*/
-/*  margin-bottom: 72px;*/
-/*}*/
-
-/*.mdl-demo #features h4, #features h5 {*/
-/*  margin-bottom: 16px;*/
-/*}*/
-
-/*.mdl-demo .toc {*/
-/*  border-left: 4px solid #C1EEF4;*/
-/*  margin: 24px;*/
-/*  padding: 0;*/
-/*  padding-left: 8px;*/
-/*  display: -webkit-flex;*/
-/*  display: -ms-flexbox;*/
-/*  display: flex;*/
-/*  -webkit-flex-direction: column;*/
-/*  -ms-flex-direction: column;*/
-/*  flex-direction: column;*/
-/*}*/
-
-/*.mdl-demo .toc h4 {*/
-/*  font-size: 0.9rem;*/
-/*  margin-top: 0;*/
-/*}*/
-
-/*.mdl-demo .toc a {*/
-/*  color: #4DD0E1;*/
-/*  text-decoration: none;*/
-/*  font-size: 16px;*/
-/*  line-height: 28px;*/
-/*  display: block;*/
-/*}*/
-
-/*.mdl-demo .mdl-menu__container {*/
-/*  z-index: 99;*/
-/*}*/
 
 
 </style>

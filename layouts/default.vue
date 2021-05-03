@@ -1,85 +1,61 @@
 <template>
-  <div>
-    <Sidebar />
-     <div class="iBody">
-    <div  class="container" >
-    <Nuxt />
-  </div>
-   </div>
+<body>
+
+
+<div class="mainWrapper">
+<!--  <header class="has-text-danger-light header has-background-dark has-text-centered has-background-grey-darker ">-->
+<!--   <br /> Title-->
+<!--  </header>-->
+  <br />
+  <Tabs />
+
+
+  <Nuxt />
+
+<!--  <footer class="footer has-text-danger-light has-background-dark has-text-centered has-background-grey-darker">ByeBye</footer>-->
 </div>
+
+
+
+
+    </body>
 </template>
+<script>
+export default {
+  head(){
+    return {
 
-<style>
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    ]
 
-html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+    }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
-.main{margin-left:20%;}
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
-
-.iBody{
-
-      background-color:#E4E3E1;
+  }
 
 }
-.container {
-
-  margin:auto;
-       font-size: 28px;
-      padding: 10px 10px;
-
-   min-height: 100vh;
-   display: block;
-}
 
 
+
+</script>
+<style scoped>
+/*footer{*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  min-height: 20vh;*/
+
+/*}*/
+/*header{*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  min-height: 20vh;*/
+
+/*}*/
+/*body{*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  max-height: 40vh;*/
+
+/*}*/
 </style>
